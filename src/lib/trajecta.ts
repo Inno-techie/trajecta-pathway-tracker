@@ -93,8 +93,9 @@ export function toDateKey(date: Date = new Date()): string {
 
 export function parseDateKey(key: string): Date {
   const [y, m, d] = key.split("-").map(Number);
-  return new Date(y, (m ?? 1) - 1, d ?? 1);
+  return new Date(y ?? 1970, (m ?? 1) - 1, d ?? 1);
 }
+
 
 export function formatShortDate(key: string | null | undefined): string {
   if (!key) return "—";
