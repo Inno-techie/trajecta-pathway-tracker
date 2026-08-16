@@ -14,7 +14,126 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      coding_topics: {
+        Row: {
+          created_at: string
+          easy: number
+          hard: number
+          id: string
+          last_practiced: string | null
+          medium: number
+          topic: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          easy?: number
+          hard?: number
+          id?: string
+          last_practiced?: string | null
+          medium?: number
+          topic: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          easy?: number
+          hard?: number
+          id?: string
+          last_practiced?: string | null
+          medium?: number
+          topic?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      job_applications: {
+        Row: {
+          application_date: string
+          company: string
+          created_at: string
+          id: string
+          platform: string
+          role: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          application_date?: string
+          company: string
+          created_at?: string
+          id?: string
+          platform: string
+          role: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          application_date?: string
+          company?: string
+          created_at?: string
+          id?: string
+          platform?: string
+          role?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      practice_logs: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          practice_date: string
+          topic: string
+          user_id: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          practice_date?: string
+          topic?: string
+          user_id: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          practice_date?: string
+          topic?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          full_name?: string
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
