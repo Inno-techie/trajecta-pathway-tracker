@@ -83,16 +83,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "TRAJECTA is a placement-preparation tracker for students: log applications, daily practice and coding progress.",
+          "One place to track your job applications, build consistent preparation habits, and see how far you've come.",
       },
       { property: "og:title", content: "TRAJECTA — Track your journey. Shape your future." },
       {
         property: "og:description",
         content:
-          "Track applications, build consistent preparation habits, and see how far you've come.",
+          "One place to track your job applications, build consistent preparation habits, and see how far you've come.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "TRAJECTA — Track your journey. Shape your future." },
+      { name: "twitter:description", content: "One place to track your job applications, build consistent preparation habits, and see how far you've come." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7f6142d187dabacfaf1ffd9ce5cd333e/id-preview-8a5ced23--a05b7a3f-aa5c-4336-8654-baba17d0f75b.lovable.app-1786879748898.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7f6142d187dabacfaf1ffd9ce5cd333e/id-preview-8a5ced23--a05b7a3f-aa5c-4336-8654-baba17d0f75b.lovable.app-1786879748898.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

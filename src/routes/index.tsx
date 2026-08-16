@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "A calm placement-preparation tracker for students: applications, daily practice, coding progress and insights.",
+          "One place to track your job applications, build consistent preparation habits, and see how far you've come.",
       },
     ],
   }),
