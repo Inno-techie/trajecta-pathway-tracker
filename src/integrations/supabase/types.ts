@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      certificates: {
+        Row: {
+          created_at: string
+          id: string
+          month: string
+          name: string
+          organization: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          month: string
+          name: string
+          organization: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          month?: string
+          name?: string
+          organization?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       coding_topics: {
         Row: {
           created_at: string
@@ -55,6 +85,7 @@ export type Database = {
           application_date: string
           company: string
           created_at: string
+          deadline_date: string | null
           id: string
           platform: string
           role: string
@@ -66,6 +97,7 @@ export type Database = {
           application_date?: string
           company: string
           created_at?: string
+          deadline_date?: string | null
           id?: string
           platform: string
           role: string
@@ -77,10 +109,50 @@ export type Database = {
           application_date?: string
           company?: string
           created_at?: string
+          deadline_date?: string | null
           id?: string
           platform?: string
           role?: string
           status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      opportunities: {
+        Row: {
+          applied_date: string
+          created_at: string
+          end_date: string | null
+          id: string
+          platform: string
+          status: string
+          submission: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          applied_date?: string
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          platform: string
+          status?: string
+          submission?: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          applied_date?: string
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          platform?: string
+          status?: string
+          submission?: string
+          title?: string
           updated_at?: string
           user_id?: string
         }
