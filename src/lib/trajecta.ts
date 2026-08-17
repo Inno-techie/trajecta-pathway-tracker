@@ -64,7 +64,7 @@ export const DAILY_CATEGORIES = [
 
 export const APPLICATION_STATUSES = [
   "Applied",
-  "Assessment",
+  "Shortlisted",
   "Interview",
   "Selected",
   "Rejected",
@@ -74,11 +74,33 @@ export const APPLICATION_STATUSES = [
 export const PLATFORMS = [
   "LinkedIn",
   "Naukri",
-  "Company Website",
   "Indeed",
-  "Internshala",
-  "Referral",
+  "Company Website",
   "Other",
+] as const;
+
+export const OPPORTUNITY_STATUSES = [
+  "Interested",
+  "Registered",
+  "In Progress",
+  "Submitted",
+  "Completed",
+  "Not Selected",
+] as const;
+
+export const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ] as const;
 
 export const GENERAL_TOPIC = "general";
