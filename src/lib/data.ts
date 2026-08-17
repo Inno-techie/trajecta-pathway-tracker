@@ -11,6 +11,7 @@ export type JobApplication = {
   role: string;
   platform: string;
   application_date: string;
+  deadline_date: string | null;
   status: string;
   created_at: string;
 };
@@ -36,6 +37,8 @@ export const qk = {
   applications: ["applications"] as const,
   practice: ["practice"] as const,
   coding: ["coding"] as const,
+  opportunities: ["opportunities"] as const,
+  certificates: ["certificates"] as const,
 };
 
 export function useProfile() {
@@ -105,6 +108,7 @@ export type ApplicationInput = {
   role: string;
   platform: string;
   application_date: string;
+  deadline_date: string | null;
   status: string;
 };
 
@@ -239,5 +243,132 @@ export function useSaveCodingTopic() {
       void qc.invalidateQueries({ queryKey: qk.coding });
       void qc.invalidateQueries({ queryKey: qk.practice });
     },
+  });
+}
+
+/* ---------------- Opportunities ---------------- */
+
+export type Opportunity = {
+  id: string;
+  user_id: string;
+  title: string;
+  platform: string;
+  applied_date: string;
+  end_date: string | null;
+  submission: string;
+  status: string;
+  created_at: string;
+};
+
+export type OpportunityInput = {
+  title: string;
+  platform: string;
+  applied_date: string;
+  end_date: string | null;
+  submission: string;
+  status: string;
+};
+
+export function useOpportunities() {
+  return useQuery({
+    queryKey: qk.opportunities,
+    queryFn: async (): Promise<Opportunity[]> => {
+      const { data, error } = await supabase
+        .from("opportunities")
+        .select("*")
+        .order("applied_date", { ascending: false })
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return (data ?? []) as Opportunity[];
+    },
+  });
+}
+
+export function useSaveOpportunity() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, values }: { id?: string; values: OpportunityInput }) => {
+      const { data: auth } = await supabase.auth.getUser();
+      if (!auth.user) throw new Error("Not signed in");
+      if (id) {
+        const { error } = await supabase.from("opportunities").update(values).eq("id", id);
+        if (error) throw error;
+      } else {
+        const { error } = await supabase
+          .from("opportunities")
+          .insert({ ...values, user_id: auth.user.id });
+        if (error) throw error;
+      }
+    },
+    onSuccess: () => void qc.invalidateQueries({ queryKey: qk.opportunities }),
+  });
+}
+
+export function useDeleteOpportunity() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase.from("opportunities").delete().eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => void qc.invalidateQueries({ queryKey: qk.opportunities }),
+  });
+}
+
+/* ---------------- Certificates ---------------- */
+
+export type Certificate = {
+  id: string;
+  user_id: string;
+  name: string;
+  month: string;
+  organization: string;
+  created_at: string;
+};
+
+export type CertificateInput = { name: string; month: string; organization: string };
+
+export function useCertificates() {
+  return useQuery({
+    queryKey: qk.certificates,
+    queryFn: async (): Promise<Certificate[]> => {
+      const { data, error } = await supabase
+        .from("certificates")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return (data ?? []) as Certificate[];
+    },
+  });
+}
+
+export function useSaveCertificate() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, values }: { id?: string; values: CertificateInput }) => {
+      const { data: auth } = await supabase.auth.getUser();
+      if (!auth.user) throw new Error("Not signed in");
+      if (id) {
+        const { error } = await supabase.from("certificates").update(values).eq("id", id);
+        if (error) throw error;
+      } else {
+        const { error } = await supabase
+          .from("certificates")
+          .insert({ ...values, user_id: auth.user.id });
+        if (error) throw error;
+      }
+    },
+    onSuccess: () => void qc.invalidateQueries({ queryKey: qk.certificates }),
+  });
+}
+
+export function useDeleteCertificate() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase.from("certificates").delete().eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => void qc.invalidateQueries({ queryKey: qk.certificates }),
   });
 }
